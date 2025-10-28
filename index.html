@@ -27,37 +27,37 @@
         //--------------------------------------------------------------
         // START - EDITABLE USER DATA
         //
-        var accessToken = "e92f889f2bbdda4efd6efae4198a0e3074fc896e";
+        var accessToken = "45d982598f75a1d7c232ac5f8de200e5475c8571";
         var deviceID = "e00fce68256dd9147325bc9a";
         // App Heading
         var appHeading = "Remote Particle";
         // Function 1
         var funcKey1 = "start";
         var args1 = "";
-        var label1 = "Start/Stop Engine"; // button label 1 (set to "" to disable)
+        var label1 = "Detector 1"; // button label 1 (set to "" to disable)
         // Function 2
         var funcKey2 = "trunk";
         var args2 = "";
-        var label2 = "Open/Close Trunk"; // button label 2 (set to "" to disable)
+        var label2 = "Detector 2"; // button label 2 (set to "" to disable)
         // Function 3
-        var funcKey3 = "lock";
+        var funcKey3 = "Lock";
         var args3 = "";
-        var label3 = "Lock Doors"; // button label 3 (set to "" to disable)
+        var label3 = "Lock"; // button label 3 (set to "" to disable)
         // Function 4
         var funcKey4 = "unlock";
         var args4 = "";
-        var label4 = "Unlock Doors"; // button label 4 (set to "" to disable)
+        var label4 = "Unlock"; // button label 4 (set to "" to disable)
         // Variable 1
         var varKey1 = "startstate";
-        var var1onLabel = "Running!";
-        var var1offLabel = "Stopped.";
+        var var1onLabel = "MOTION DETECTED";
+        var var1offLabel = "";
         var var1onState = 1; // Set to null to allow raw value to be displayed.
         var var1offState = 0; // Set to null to allow raw value to be displayed.
         var refresh1 = 10000; // variable 1 refresh rate in milliseconds (set to 0 to disable)
         // Variable 2
         var varKey2 = "trunkstate";
-        var var2onLabel = "Open!";
-        var var2offLabel = "Closed.";
+        var var2onLabel = "MOTION DETECTED";
+        var var2offLabel = "";
         var var2onState = 1; // Set to null to allow raw value to be displayed.
         var var2offState = 0; // Set to null to allow raw value to be displayed.
         var refresh2 = 10000; // variable 2 refresh rate in milliseconds (set to 0 to disable)
@@ -89,8 +89,8 @@
         // or hide them if not defined.
         (label1) ? $("#button-1").html(label1) : $("#button-1").hide();
         (label2) ? $("#button-2").html(label2) : $("#button-2").hide();
-        (label3) ? $("#button-3").html(label3) : $("#button-3").hide();
-        (label4) ? $("#button-4").html(label4) : $("#button-4").hide();
+        // (label3) ? $("#button-3").html(label3) : $("#button-3").hide();
+        // (label4) ? $("#button-4").html(label4) : $("#button-4").hide();
 
         // Override text input styles
         $(".form-control").css({"display":"inline","width":"35%"});
@@ -98,8 +98,8 @@
         // Hide variable text fields if not in use.
         if(refresh1 === 0) $("#var-val-1").hide();
         if(refresh2 === 0) $("#var-val-2").hide();
-        if(refresh3 === 0) $("#var-val-3").hide();
-        if(refresh4 === 0) $("#var-val-4").hide();
+        // if(refresh3 === 0) $("#var-val-3").hide();
+        // if(refresh4 === 0) $("#var-val-4").hide();
 
         // Auto-refresh
         // Turn on/off the variable refresh if refresh rates are defined
@@ -115,18 +115,18 @@
             getVariable2();
           }, refresh2);
         }
-        if(refresh3) {
-          $("#get-var-3").attr("disabled", "disabled");
-          timer3 = setInterval(function () {
-            getVariable3();
-          }, refresh3);
-        }
-        if(refresh4) {
-          $("#get-var-4").attr("disabled", "disabled");
-          timer4 = setInterval(function () {
-            getVariable4();
-          }, refresh4);
-        }
+        // if(refresh3) {
+        //   $("#get-var-3").attr("disabled", "disabled");
+        //   timer3 = setInterval(function () {
+        //     getVariable3();
+        //   }, refresh3);
+        // }
+        // if(refresh4) {
+        //   $("#get-var-4").attr("disabled", "disabled");
+        //   timer4 = setInterval(function () {
+        //     getVariable4();
+        //   }, refresh4);
+        // }
 
         ////
         // Alerts
@@ -208,12 +208,12 @@
         $("#button-2").on("click", function () {
           doMethod(funcKey2, args2);
         });
-        $("#button-3").on("click", function () {
-          doMethod(funcKey3, args3);
-        });
-        $("#button-4").on("click", function () {
-          doMethod(funcKey4, args4);
-        });
+        // $("#button-3").on("click", function () {
+        //   doMethod(funcKey3, args3);
+        // });
+        // $("#button-4").on("click", function () {
+        //   doMethod(funcKey4, args4);
+        // });
 
         ////
         // Variables
@@ -274,26 +274,26 @@
               $("#var-val-2").val(res);
           });
         }
-        function getVariable3() {
-          getVariable(varKey3, function (res) {
-            if(res === var3onState)
-              $("#var-val-3").val(var3onLabel);
-            else if(res === var3offState)
-              $("#var-val-3").val(var3offLabel);
-            else
-              $("#var-val-3").val(res);
-          });
-        }
-        function getVariable4() {
-          getVariable(varKey4, function (res) {
-            if(res === var4onState)
-              $("#var-val-4").val(var4onLabel);
-            else if(res === var4offState)
-              $("#var-val-4").val(var4offLabel);
-            else
-              $("#var-val-4").val(res);
-          });
-        }
+        // function getVariable3() {
+        //   getVariable(varKey3, function (res) {
+        //     if(res === var3onState)
+        //       $("#var-val-3").val(var3onLabel);
+        //     else if(res === var3offState)
+        //       $("#var-val-3").val(var3offLabel);
+        //     else
+        //       $("#var-val-3").val(res);
+        //   });
+        // }
+        // function getVariable4() {
+        //   getVariable(varKey4, function (res) {
+        //     if(res === var4onState)
+        //       $("#var-val-4").val(var4onLabel);
+        //     else if(res === var4offState)
+        //       $("#var-val-4").val(var4offLabel);
+        //     else
+        //       $("#var-val-4").val(res);
+        //   });
+        // }
 
       });
     </script>
@@ -311,10 +311,10 @@
             <input type="text" class="form-control" value="---" readonly id="var-val-1"><br/><br/>
             <button type="button" class="btn btn-primary btn-lg" id="button-2">BUTTON 2</button>
             <input type="text" class="form-control" value="---" readonly id="var-val-2"><br/><br/>
-            <button type="button" class="btn btn-primary btn-lg" id="button-3">BUTTON 3</button>
+            <!-- <button type="button" class="btn btn-primary btn-lg" id="button-3">BUTTON 3</button>
             <input type="text" class="form-control" value="---" readonly id="var-val-3"><br/><br/>
             <button type="button" class="btn btn-primary btn-lg" id="button-4">BUTTON 4</button>
-            <input type="text" class="form-control" value="---" readonly id="var-val-4">
+            <input type="text" class="form-control" value="---" readonly id="var-val-4"> -->
           </div>
         </div>
       </div>
