@@ -38,8 +38,6 @@
         var label2 = "PIR 2"; // button label 2 (set to "" to disable)
         var label3 = "BREAK 1"; // button label 3 (set to "" to disable)
         var label4 = "BREAK 2"; // button label 4 (set to "" to disable)
-
-        var varNull = "---"; // no response (likely no I2C connection)
         
         // Variable 1
         var varKey1 = "detect1";
@@ -241,7 +239,7 @@
             else if(res === var1offState)
               $("#var-val-1").val(var1offLabel).css("border", "3px solid green");
             else
-              $("#var-val-1").val(varNull).css("border", "1px solid gray");
+              $("#var-val-1").val("---").css("border", "1px solid gray");
           });
         }
         function getVariable2() {
@@ -251,7 +249,7 @@
             else if(res === var2offState)
               $("#var-val-2").val(var2offLabel).css("border", "3px solid green");
             else
-              $("#var-val-2").val(varNull).css("border", "1px solid gray");
+              $("#var-val-2").val("---").css("border", "1px solid gray");
           });
         }
         function getVariable3() {
@@ -261,7 +259,7 @@
             else if(res === var3offState)
               $("#var-val-3").val(var3offLabel).css("border", "3px solid green");
             else
-              $("#var-val-3").val(varNull).css("border", "1px solid gray");
+              $("#var-val-3").val("---").css("border", "1px solid gray");
           });
         }
         function getVariable4() {
@@ -271,7 +269,7 @@
             else if(res === var4offState)
               $("#var-val-4").val(var4offLabel).css("border", "3px solid green");
             else
-              $("#var-val-4").val(varNull).css("border", "1px solid gray");
+              $("#var-val-4").val("---").css("border", "1px solid gray");
           });
         }
       });
