@@ -21,7 +21,7 @@
     <script>
       $(document).ready(function() {
         var statusTimer = null;
-        var timer1, timer2
+        var timer1, timer2, timer3, timer4
         var baseURL = "https://api.particle.io/v1/devices/";
 
         //--------------------------------------------------------------
@@ -33,18 +33,14 @@
         // App Heading
         var appHeading = "Remote Particle";
 
-        // Function 1
-        var funcKey1 = "detect1";
-        var args1 = "";
-        var label1 = "Detector 1"; // button label 1 (set to "" to disable)
-        
-        // Function 2
-        var funcKey2 = "detect2";
-        var args2 = "";
-        var label2 = "Detector 2"; // button label 2 (set to "" to disable)
-  
+        // Button Labels
+        var label1 = "PIR 1"; // button label 1 (set to "" to disable)
+        var label2 = "PIR 2"; // button label 2 (set to "" to disable)
+        var label3 = "BREAK 1"; // button label 1 (set to "" to disable)
+        var label4 = "BREAK 2"; // button label 2 (set to "" to disable)
+
         // Variable 1
-        var varKey1 = "detect1state";
+        var varKey1 = "detect1";
         var var1onLabel = "MOTION DETECTED";
         var var1offLabel = "NO MOTION";
         var var1onState = 1; // Set to null to allow raw value to be displayed.
@@ -58,6 +54,22 @@
         var var2onState = 1; // Set to null to allow raw value to be displayed.
         var var2offState = 0; // Set to null to allow raw value to be displayed.
         var refresh2 = 10000; // variable 2 refresh rate in milliseconds (set to 0 to disable)
+
+        // Variable 3
+        var varKey3 = "detect3state";
+        var var3onLabel = "MOTION DETECTED";
+        var var3offLabel = "NO MOTION";
+        var var3onState = 1; // Set to null to allow raw value to be displayed.
+        var var3offState = 0; // Set to null to allow raw value to be displayed.
+        var refresh3 = 10000; // variable 3 refresh rate in milliseconds (set to 0 to disable)
+
+        // Variable 4
+        var varKey4 = "detect4state";
+        var var4onLabel = "MOTION DETECTED";
+        var var4offLabel = "NO MOTION";
+        var var4onState = 1; // Set to null to allow raw value to be displayed.
+        var var4offState = 0; // Set to null to allow raw value to be displayed.
+        var refresh4 = 10000; // variable 4 refresh rate in milliseconds (set to 0 to disable)
         //
         // END - EDITABLE USER DATA
         //--------------------------------------------------------------
@@ -72,6 +84,8 @@
         // or hide them if not defined.
         (label1) ? $("#button-1").html(label1) : $("#button-1").hide();
         (label2) ? $("#button-2").html(label2) : $("#button-2").hide();
+        (label3) ? $("#button-3").html(label3) : $("#button-3").hide();
+        (label4) ? $("#button-4").html(label4) : $("#button-4").hide();
 
         // Override text input styles
         $(".form-control").css({"display":"inline","width":"35%"});
@@ -79,6 +93,8 @@
         // Hide variable text fields if not in use.
         if(refresh1 === 0) $("#var-val-1").hide();
         if(refresh2 === 0) $("#var-val-2").hide();
+        if(refresh3 === 0) $("#var-val-3").hide();
+        if(refresh4 === 0) $("#var-val-4").hide();
 
         // Auto-refresh
         // Turn on/off the variable refresh if refresh rates are defined
@@ -94,14 +110,24 @@
             getVariable2();
           }, refresh2);
         }
+        if(refresh3) {
+          $("#get-var-3").attr("disabled", "disabled");
+          timer3 = setInterval(function () {
+            getVariable3();
+          }, refresh3);
+        }
+        if(refresh4) {
+          $("#get-var-4").attr("disabled", "disabled");
+          timer4 = setInterval(function () {
+            getVariable4();
+          }, refresh4);
+        }
 
-        ////
         // Alerts
         ////
         $("#info-alert").alert();
         $("#info-alert").affix();
 
-        ////
         // Methods
         ////
         function onMethodSuccess() {
@@ -170,12 +196,16 @@
         }
 
         $("#button-1").on("click", function () {
-          // doMethod(funcKey1, args1);
           getVariable1();
         });
         $("#button-2").on("click", function () {
-          // doMethod(funcKey2, args2);
           getVariable2();
+        });
+        $("#button-3").on("click", function () {
+          getVariable3();
+        });
+        $("#button-4").on("click", function () {
+          getVariable4();
         });
 
         ////
@@ -205,9 +235,9 @@
         function getVariable1() {
           getVariable(varKey1, function (res) {
             if(res === var1onState)
-              $("#var-val-1").val(var1onLabel);
+              $("#var-val-1").val(var1onLabel).css("border", "3px solid red");
             else if(res === var1offState)
-              $("#var-val-1").val(var1offLabel);
+              $("#var-val-1").val(var1offLabel).css("border", "3px solid green");
             else
               $("#var-val-1").val(res);
           });
@@ -215,11 +245,31 @@
         function getVariable2() {
           getVariable(varKey2, function (res) {
             if(res === var2onState)
-              $("#var-val-2").val(var2onLabel);
+              $("#var-val-2").val(var2onLabel).css("border", "3px solid red");
             else if(res === var2offState)
-              $("#var-val-2").val(var2offLabel);
+              $("#var-val-2").val(var2offLabel).css("border", "3px solid green");
             else
               $("#var-val-2").val(res);
+          });
+        }
+        function getVariable3() {
+          getVariable(varKey3, function (res) {
+            if(res === var3onState)
+              $("#var-val-3").val(var3onLabel).css("border", "3px solid red");
+            else if(res === var3offState)
+              $("#var-val-3").val(var3offLabel).css("border", "3px solid green");
+            else
+              $("#var-val-3").val(res);
+          });
+        }
+        function getVariable4() {
+          getVariable(varKey4, function (res) {
+            if(res === var4onState)
+              $("#var-val-4").val(var4onLabel).css("border", "3px solid red");
+            else if(res === var4offState)
+              $("#var-val-4").val(var4offLabel).css("border", "3px solid green");
+            else
+              $("#var-val-4").val(res);
           });
         }
       });
@@ -238,6 +288,10 @@
             <input type="text" class="form-control" value="---" readonly id="var-val-1"><br/><br/>
             <button type="button" class="btn btn-primary btn-lg" id="button-2">BUTTON 2</button>
             <input type="text" class="form-control" value="---" readonly id="var-val-2"><br/><br/>
+            <button type="button" class="btn btn-primary btn-lg" id="button-3">BUTTON 3</button>
+            <input type="text" class="form-control" value="---" readonly id="var-val-3"><br/><br/>
+            <button type="button" class="btn btn-primary btn-lg" id="button-4">BUTTON 4</button>
+            <input type="text" class="form-control" value="---" readonly id="var-val-4"><br/><br/>
           </div>
         </div>
       </div>
