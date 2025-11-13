@@ -155,7 +155,7 @@
 
         function onMethodFailure(data) {
           alert = $("#info-alert");
-          alert.text((data)?"Error! "+data:"Error!").removeClass("alert-success").addClass("alert-danger");
+          alert.text((data)?"No Response "+data:"No Response").removeClass("alert-success").addClass("alert-danger");
           if(statusTimer != null) {
             clearTimeout(statusTimer);
             alert.hide();
