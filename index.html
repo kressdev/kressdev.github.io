@@ -197,15 +197,19 @@
 
         $("#button-1").on("click", function () {
           getVariable1();
+          addMoreItems("PIR 1");
         });
         $("#button-2").on("click", function () {
           getVariable2();
+          addMoreItems("PIR 2")
         });
         $("#button-3").on("click", function () {
           getVariable3();
+          addMoreItems("BREAK 1")
         });
         $("#button-4").on("click", function () {
           getVariable4();
+          addMoreItems("BREAK 2")
         });
 
         ////
@@ -271,6 +275,16 @@
             else
               $("#var-val-4").val("---").css("border", "1px solid gray");
           });
+        }
+        function addMoreItems(detector_name) {
+          const now = new Date();
+          const utcHours = now.getUTCHours();
+          const utcMinutes = now.getUTCMinutes();
+          const utcSeconds = now.getUTCSeconds();
+          const formattedTime = `${String(utcHours).padStart(2, '0')}:${String(utcMinutes).padStart(2, '0')}:${String(utcSeconds).padStart(2, '0')}`;
+          const newItem = document.createElement('li');
+          newItem.textContent = `Alarm on ${detector_name} at Time: ${formattedTime}`;
+          textList.appendChild(newItem);
         }
       });
     </script>
