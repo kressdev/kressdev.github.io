@@ -14,6 +14,48 @@
   width: 100%;
 }
 
+.scroll-container {
+    border: 1px solid #ccc;
+    display: flex;
+    overflow-y: auto; /* Enable vertical scrollbar when content overflows */
+    overflow-x: auto; /* Enables horizontal scrolling */
+    padding: 20px; /* Example padding around the items */
+    justify-content: center; /* Centers the flex items horizontally */
+}
+
+#textList {
+    list-style: none; /* Remove default list bullet points */
+    padding: 0;
+    margin: 0;
+}
+
+#textList li {
+    padding: 5px 0;
+    border-bottom: 1px dashed #eee;
+}
+
+#textList li:last-child {
+    border-bottom: none;
+}
+
+/* Optional: Custom scrollbar styling for WebKit browsers */
+.scroll-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
 @media (min-width: 768px) {
  .affix {
     width: 720px;
@@ -31,4 +73,7 @@
     width: 1140px;
   }
 }
+
+
+
 
