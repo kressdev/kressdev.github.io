@@ -278,14 +278,14 @@
               $("#var-val-4").val("---").css("border", "1px solid gray");
           });
         }
-        function addMoreItems(detector_name) {
+        function addMoreItems(detectorName) {
           const now = new Date();
           const utcHours = now.getUTCHours();
           const utcMinutes = now.getUTCMinutes();
           const utcSeconds = now.getUTCSeconds();
           const formattedTime = `${String(utcHours).padStart(2, '0')}:${String(utcMinutes).padStart(2, '0')}:${String(utcSeconds).padStart(2, '0')}`;
           const newItem = document.createElement('li');
-          newItem.textContent = `Alarm on ${detector_name} at Time: ${formattedTime}`;
+          newItem.textContent = `UTC Time: ${formattedTime} Alarm on ${detectorName}`;
           textList.prepend(newItem);
         }
       });
