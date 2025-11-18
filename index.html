@@ -236,9 +236,10 @@
         // Get variable methods
         function getVariable1() {
           getVariable(varKey1, function (res) {
-            if(res === var1onState)
+            if(res === var1onState) {
               $("#var-val-1").val(var1onLabel).css("border", "3px solid red");
               addMoreItems("PIR 1");
+            }
             else if(res === var1offState)
               $("#var-val-1").val(var1offLabel).css("border", "3px solid green");
             else
@@ -247,9 +248,10 @@
         }
         function getVariable2() {
           getVariable(varKey2, function (res) {
-            if(res === var2onState)
+            if(res === var2onState) {
               $("#var-val-2").val(var2onLabel).css("border", "3px solid red");
               addMoreItems("PIR 2");
+            }
             else if(res === var2offState)
               $("#var-val-2").val(var2offLabel).css("border", "3px solid green");
             else
@@ -258,9 +260,10 @@
         }
         function getVariable3() {
           getVariable(varKey3, function (res) {
-            if(res === var3onState)
+            if(res === var3onState) {
               $("#var-val-3").val(var3onLabel).css("border", "3px solid red");
               addMoreItems("BREAK 1");
+            }
             else if(res === var3offState)
               $("#var-val-3").val(var3offLabel).css("border", "3px solid green");
             else
@@ -269,9 +272,10 @@
         }
         function getVariable4() {
           getVariable(varKey4, function (res) {
-            if(res === var4onState)
+            if(res === var4onState) {
               $("#var-val-4").val(var4onLabel).css("border", "3px solid red");
               addMoreItems("BREAK 2");
+            }
             else if(res === var4offState)
               $("#var-val-4").val(var4offLabel).css("border", "3px solid green");
             else
